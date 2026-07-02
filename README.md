@@ -256,20 +256,6 @@ work in progress unless those templates and configs are completed.
 - The balanced `K=4` configuration is the main morphology-regime setting. `K=3`
   and `K=5` can be used as sensitivity analyses by changing `--profile-k`.
 
-## Citation
-
-If this repository supports your work, cite the associated MorphoGP manuscript.
-The BibTeX entry will be added after publication.
-
-```bibtex
-@misc{morphogp,
-  title  = {MorphoGP: Morphology-Aware Gaussian Process Modelling for Coastal Profiles},
-  author = {Wu, Xi},
-  year   = {2025},
-  note   = {Research code}
-}
-```
-
 ## License
 
 This project is released under the MIT License. See [LICENSE](LICENSE) for
