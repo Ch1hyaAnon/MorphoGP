@@ -205,3 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Project data and generated experiment artifacts
+.DS_Store
+Datasets/
+results/
+cluster_result/
+*.pt
+*.pth

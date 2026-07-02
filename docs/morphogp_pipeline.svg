@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="430" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+  <title id="title">MorphoGP ContourCluster pipeline</title>
+  <desc id="desc">Pipeline from Excel beach profiles through shapelet learning and balanced profile clustering to morphology labels.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f3a45"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#24313f" flood-opacity="0.14"/>
+    </filter>
+    <linearGradient id="profileGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8f2ff"/>
+      <stop offset="100%" stop-color="#f5fbf4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1120" height="430" fill="#f8fafc"/>
+
+  <text x="560" y="46" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700" fill="#16212d">
+    MorphoGP ContourCluster
+  </text>
+  <text x="560" y="74" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#52616f">
+    Morphology-aware profile partitioning with learned beach shapelets
+  </text>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(42 120)" filter="url(#shadow)">
+      <rect width="166" height="176" rx="10" fill="#ffffff" stroke="#d8e0e8"/>
+      <rect x="0" y="0" width="166" height="48" rx="10" fill="#dff1ff"/>
+      <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#17364d">Input profiles</text>
+      <text x="22" y="76" font-size="13" fill="#2f3a45">Datasets/group_*.xlsx</text>
+      <text x="22" y="101" font-size="12" fill="#52616f">required: y</text>
+      <text x="22" y="121" font-size="12" fill="#52616f">preferred: x_norm</text>
+      <text x="22" y="141" font-size="12" fill="#52616f">fallback: x</text>
+      <path d="M 28 162 C 52 135, 78 170, 105 143 S 140 150, 148 126" fill="none" stroke="#2878b8" stroke-width="3"/>
+    </g>
+
+    <g transform="translate(258 120)" filter="url(#shadow)">
+      <rect width="166" height="176" rx="10" fill="#ffffff" stroke="#d8e0e8"/>
+      <rect x="0" y="0" width="166" height="48" rx="10" fill="#e4f7ea"/>
+      <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#1f4c32">Preprocess</text>
+      <text x="22" y="77" font-size="13" fill="#2f3a45">Sort by cross-shore x</text>
+      <text x="22" y="101" font-size="13" fill="#2f3a45">Min-max normalize</text>
+      <text x="22" y="125" font-size="13" fill="#2f3a45">Interpolate to 128 grid</text>
+      <text x="22" y="149" font-size="12" fill="#52616f">skip profiles with &lt; 5 points</text>
+    </g>
+
+    <g transform="translate(474 120)" filter="url(#shadow)">
+      <rect width="166" height="176" rx="10" fill="#ffffff" stroke="#d8e0e8"/>
+      <rect x="0" y="0" width="166" height="48" rx="10" fill="#fff0cf"/>
+      <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#664308">Shapelet learning</text>
+      <text x="22" y="76" font-size="13" fill="#2f3a45">Sliding windows</text>
+      <text x="22" y="100" font-size="12" fill="#52616f">lengths: 16, 24, 32</text>
+      <text x="22" y="124" font-size="13" fill="#2f3a45">Transformer encoder</text>
+      <text x="22" y="148" font-size="13" fill="#2f3a45">Triplet loss</text>
+      <rect x="24" y="160" width="30" height="6" rx="3" fill="#d7971f"/>
+      <rect x="62" y="153" width="42" height="6" rx="3" fill="#d7971f"/>
+      <rect x="112" y="164" width="28" height="6" rx="3" fill="#d7971f"/>
+    </g>
+
+    <g transform="translate(690 120)" filter="url(#shadow)">
+      <rect width="166" height="176" rx="10" fill="#ffffff" stroke="#d8e0e8"/>
+      <rect x="0" y="0" width="166" height="48" rx="10" fill="#f1e8ff"/>
+      <text x="83" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#4a3078">Profile features</text>
+      <text x="22" y="76" font-size="13" fill="#2f3a45">8 representative shapelets</text>
+      <text x="22" y="100" font-size="13" fill="#2f3a45">Soft-min similarities</text>
+      <text x="22" y="124" font-size="13" fill="#2f3a45">Best match locations</text>
+      <text x="22" y="148" font-size="13" fill="#2f3a45">Slope descriptors</text>
+      <circle cx="38" cy="163" r="5" fill="#7357b8"/>
+      <circle cx="65" cy="163" r="5" fill="#7357b8"/>
+      <circle cx="92" cy="163" r="5" fill="#7357b8"/>
+      <circle cx="119" cy="163" r="5" fill="#7357b8"/>
+    </g>
+
+    <g transform="translate(906 120)" filter="url(#shadow)">
+      <rect width="172" height="176" rx="10" fill="url(#profileGradient)" stroke="#d8e0e8"/>
+      <rect x="0" y="0" width="172" height="48" rx="10" fill="#e9eef3"/>
+      <text x="86" y="30" text-anchor="middle" font-size="15" font-weight="700" fill="#26313d">Morphology labels</text>
+      <text x="22" y="76" font-size="13" fill="#2f3a45">balanced k-means</text>
+      <text x="22" y="100" font-size="13" fill="#2f3a45">default K = 4</text>
+      <text x="22" y="124" font-size="13" fill="#2f3a45">profile_id -> kappa</text>
+      <g transform="translate(25 145)">
+        <rect width="24" height="18" rx="4" fill="#2878b8"/>
+        <rect x="34" width="24" height="18" rx="4" fill="#3a9b5f"/>
+        <rect x="68" width="24" height="18" rx="4" fill="#d7971f"/>
+        <rect x="102" width="24" height="18" rx="4" fill="#7357b8"/>
+      </g>
+    </g>
+  </g>
+
+  <g stroke="#2f3a45" stroke-width="2.5" marker-end="url(#arrow)" fill="none">
+    <path d="M 214 208 L 248 208"/>
+    <path d="M 430 208 L 464 208"/>
+    <path d="M 646 208 L 680 208"/>
+    <path d="M 862 208 L 896 208"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif" font-size="12" fill="#52616f">
+    <text x="560" y="344" text-anchor="middle">Outputs: profile_clusters.csv, representative_shapelets.csv, shapelet_matches.csv, cluster diagnostics, figures, and shapelet_encoder.pt</text>
+    <text x="560" y="370" text-anchor="middle">Modes: baseline augmentation-only triplets or enhanced morphology-aware positives and hard negatives</text>
+  </g>
+</svg>
